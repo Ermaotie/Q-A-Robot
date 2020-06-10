@@ -6,8 +6,8 @@ import json
 
 robot = werobot.WeRoBot(token='tokenhere')
 api = "http://a5.zimingdh.com/jiekou/api.php?question="
-robot.config["APP_ID"] = "wx4946d787a25bc3d4"
-robot.config["APP_SECRET"] = "wx4946d787a25bc3d4"
+robot.config["APP_ID"] = "wx7407f5c28abc23c0"
+robot.config["APP_SECRET"] = "0b0e1bf34d4253ff1e550830da0818f8"
 @robot.handler
 def echo(message):
     request = req.get(api+message, verify=False, timeout=30)
