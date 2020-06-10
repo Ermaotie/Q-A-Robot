@@ -10,10 +10,10 @@ robot.config["APP_ID"] = "wx7407f5c28abc23c0"
 robot.config["APP_SECRET"] = "0b0e1bf34d4253ff1e550830da0818f8"
 @robot.handler
 def echo(message):
-    request = req.get(api+message, verify=False, timeout=30)
+    request = req.get(api+message.content, verify=False, timeout=30)
     request.encoding = 'utf-8'
     answer = json.loads(request.text)
-    return "问："+answer["question"]+"\\n"+"答："+answer["answer"]
+    return "问："+answer["question"]+"\n"+"答："+answer["answer"]
 
 
 robot.config['HOST'] = '0.0.0.0'
