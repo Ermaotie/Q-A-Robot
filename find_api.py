@@ -24,8 +24,8 @@ class DA:
             "goods_id": random.randint(7000, 10000),
             "content": content
         }
-        demo = requests.post(url, self.data, headers=headers)
-        demo.encoding = "utf-8"
+        self.demo = requests.post(url, self.data, headers=headers)
+        self.demo.encoding = "utf-8"
         self.QA = json.loads(self.demo.text)
 
     def getAnswer(self):
@@ -38,4 +38,4 @@ class DA:
         if 'data' in self.QA.keys():
             return self.QA["data"][0]["question"]
         else:
-            return self.QA['msg']
+            return None
