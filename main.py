@@ -2,7 +2,7 @@
 import werobot
 import requests as req
 import json
-import find_api import *
+from find_api import *
 
 
 robot = werobot.WeRoBot(token='tokenhere')
