@@ -38,4 +38,4 @@ class DA:
         if 'data' in self.QA.keys():
             return self.QA["data"][0]["question"]
         else:
-            return None
+            return ""
