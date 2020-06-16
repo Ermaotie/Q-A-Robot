@@ -26,9 +26,9 @@ class DA:
         }
         demo = requests.post(url, self.data, headers=headers)
         demo.encoding = "utf-8"
+        self.QA = json.loads(self.demo.text)
 
     def getAnswer(self):
-        self.QA = json.loads(self.demo.text)
         if 'data' in self.QA.keys():
             return self.QA["data"][0]["answer"]
         else:
