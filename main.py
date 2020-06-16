@@ -6,9 +6,8 @@ import find_api import *
 
 
 robot = werobot.WeRoBot(token='tokenhere')
-api = "http://a5.zimingdh.com/jiekou/api.php?question="
 robot.config["APP_ID"] = "wx4946d787a25bc3d4"
-robot.config["APP_SECRET"] = "wx4946d787a25bc3d4"
+robot.config["APP_SECRET"] = "0b0e1bf34d4253ff1e550830da0818f8"
 @robot.handler
 def echo(message):
     demo = DA(message.content)
@@ -17,5 +16,4 @@ def echo(message):
 
 robot.config['HOST'] = '0.0.0.0'
 robot.config['PORT'] = 80
-# print(echo("中华人民共和国成立时间"))
 robot.run()
