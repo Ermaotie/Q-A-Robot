@@ -2,21 +2,8 @@ import requests
 import random
 import json
 
-
-class DA:
-    def __init__(self, content):
-        self.content = content
-        self.data = {
-            "goods_id": random.randint(7000, 10000),
-            "content": content
-        }
-
 url = "https://tiku.xuexibao.tech/api/mobile/Index/searchQuestion"
 headers = {
-        # ":authority": "tiku.xuexibao.tech",
-        # ":method": "POST",
-        # ":path": "/api/mobile/Index/searchQuestion",
-        # ":scheme": "https",
         "accept": "*/*",
         "accept-encoding": "gzip,deflate,br",
         "accept-language": "zh-CN,zh;q=0.9",
@@ -29,17 +16,26 @@ headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
     }
 
-DEMO = DA("测试a p i接口")
-print(DEMO.content)
-demo = requests.post(url,DEMO.data,headers=headers)
-demo.encoding = "utf-8"
-QAgroup = json.loads(demo.text)
 
+class DA:
+    def __init__(self, content):
+        self.content = content
+        self.data = {
+            "goods_id": random.randint(7000, 10000),
+            "content": content
+        }
+        demo = requests.post(url, self.data, headers=headers)
+        demo.encoding = "utf-8"
 
-def main():
-    if 'data' in QAgroup.keys():
-        print(QAgroup["data"][0]["answer"])
-    else:
-        print(QAgroup['msg'])
+    def getAnswer(self):
+        self.QA = json.loads(self.demo.text)
+        if 'data' in self.QA.keys():
+            return self.QA["data"][0]["answer"]
+        else:
+            return self.QA['msg']
 
-main()
+    def getQuestion(self):
+        if 'data' in self.QA.keys():
+            return self.QA["data"][0]["question"]
+        else:
+            return self.QA['msg']

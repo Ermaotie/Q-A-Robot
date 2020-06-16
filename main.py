@@ -2,6 +2,7 @@
 import werobot
 import requests as req
 import json
+import find_api import *
 
 
 robot = werobot.WeRoBot(token='tokenhere')
@@ -10,10 +11,8 @@ robot.config["APP_ID"] = "wx4946d787a25bc3d4"
 robot.config["APP_SECRET"] = "wx4946d787a25bc3d4"
 @robot.handler
 def echo(message):
-    request = req.get(api+message, verify=False, timeout=30)
-    request.encoding = 'utf-8'
-    answer = json.loads(request.text)
-    return "问："+answer["question"]+"\\n"+"答："+answer["answer"]
+    demo = DA(message.content)
+    return "问："+demo.getQuestion()+"\n"+"答："+demo.getAnswer()
 
 
 robot.config['HOST'] = '0.0.0.0'
