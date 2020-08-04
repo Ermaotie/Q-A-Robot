@@ -20,7 +20,7 @@ classifyClient = AipImageClassify(*INFO)
 
 def info_format(result):
     keyword = result['keyword']
-    if result['baike_info'].has_key('desciption'):
+    if 'desciption' in result['baike_info'].keys():
         description = result['baike_info']['description']
         image_url = result['baike_info']['image_url']
     else:
