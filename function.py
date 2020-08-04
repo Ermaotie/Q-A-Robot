@@ -35,5 +35,4 @@ def search_demo(image):
     return info_format(res['result'][0])
 
 
-image = get_file_content('D://临时/1584152777_458425.jpg')
-print(classify_demo(image))
+
