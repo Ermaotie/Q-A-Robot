@@ -16,7 +16,6 @@ options = {
     'baike_num': 1,
 }
 classifyClient = AipImageClassify(*INFO)
-searchClient = AipImageSearch(*INFO)
 
 
 def info_format(result):
@@ -39,10 +38,6 @@ def classify_demo(image):
     res = classifyClient.advancedGeneral(img, options)
     return info_format(res['result'][0])
 
-
-def search_demo(image):
-    res = searchClient.productSearch(img, options)
-    return info_format(res['result'][0])
 
 
 
