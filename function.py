@@ -20,8 +20,12 @@ classifyClient = AipImageClassify(*INFO)
 
 def info_format(result):
     keyword = result['keyword']
-    description = result['baike_info']['description']
-    image_url = result['baike_info']['image_url']
+    if result['baike_info'].has_key('desciption'):
+        description = result['baike_info']['description']
+        image_url = result['baike_info']['image_url']
+    else:
+        description = '暂无结果'
+        image_url = '暂无结果'
     res = '查询结果：' + '\n' + keyword + '\n' + '百度百科:' + '\n' + description + '\n' + '图片链接:' + '\n' + image_url
     return res
 
