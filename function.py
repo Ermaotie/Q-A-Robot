@@ -1,5 +1,11 @@
 #coding=utf-8
 from aip import *
+from urllib.request import urlretrieve
+import os
+import time
+
+
+os.makedirs('./image/', exist_ok=True)
 
 INFO = ['21786513',  # APP id
         '6RW8ATqt8XVsV2wNSnwbYMfw',  # key
@@ -27,12 +33,15 @@ def get_file_content(filePath):
 
 
 def classify_demo(image):
-    res = classifyClient.advancedGeneral(image, options)
+    file_name = './image/'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'.jpg'
+    urlretrieve(image,file_name)
+    img = get_file_content(file_name)
+    res = classifyClient.advancedGeneral(img, options)
     return info_format(res['result'][0])
 
 
 def search_demo(image):
-    res = searchClient.productSearch(image, options)
+    res = searchClient.productSearch(img, options)
     return info_format(res['result'][0])
 
 
