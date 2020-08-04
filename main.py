@@ -9,7 +9,7 @@ robot.config["APP_SECRET"] = "742523c2e05cc02d9ebf66ebffa8a9f6"
 
 @robot.image
 def img(message):
-    return search_demo(message.img)
+    return search_demo(message.image)
 
 
 robot.config['HOST'] = '0.0.0.0'
