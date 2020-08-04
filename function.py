@@ -1,3 +1,4 @@
+#coding=utf-8
 from aip import *
 
 INFO = ['21786513',  # APP id
