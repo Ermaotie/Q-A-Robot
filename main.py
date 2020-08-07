@@ -9,7 +9,7 @@ robot.config["APP_ID"] = "wx4946d787a25bc3d4"
 robot.config["APP_SECRET"] = "742523c2e05cc02d9ebf66ebffa8a9f6"
 
 url = 'http://sc.ftqq.com/3.version'
-api = 'http://sc.ftqq.com/SCKEY.send?text='
+api = 'http://sc.ftqq.com/'
 
 
 @robot.image
@@ -29,7 +29,7 @@ def sub(message):
         file = open('./SCKEYS.txt', 'a', encoding='UTF-8')
         file.write(key+'\n')
         file.close()
-        requests.get(api + '恭喜绑定成功，请等待推送')
+        requests.get(api + key + '.send?text=' + '恭喜绑定成功，请等待推送')
         return '请查看消息列表'
 
 
