@@ -22,14 +22,15 @@ def subscribe():
     return '在微信绑定Server酱之后，请将SCKEY发送至本公众号\n格式为：\nSCKEY xxxxxx\n如果您不知道什么是SCKEY，请阅读'+url
 
 
-@robot.filter('SCKEY' or 'sckey')
+@robot.text
 def sub(message):
-    key = message.content.split()[-1]
-    file = open('./SCKEYS.txt', 'a', encoding='UTF-8')
-    file.write(key+'\n')
-    file.close()
-    requests.get(api + '恭喜绑定成功，请等待推送')
-    return '请查看消息列表'
+    if 'SCKEY' in message.content:
+        key = message.content.split()[-1]
+        file = open('./SCKEYS.txt', 'a', encoding='UTF-8')
+        file.write(key+'\n')
+        file.close()
+        requests.get(api + '恭喜绑定成功，请等待推送')
+        return '请查看消息列表'
 
 
 robot.config['HOST'] = '0.0.0.0'
