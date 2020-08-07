@@ -1,6 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+import time, random
 
 
 url = "http://jw.scut.edu.cn/zhinan/cms/article/v2/findInformNotice.do"
@@ -33,9 +34,8 @@ def getDesp(id,baselink):
     for string in soup.strings:
         content = content + string
     if len(content)>900:
-        return content[0:200] + '...'+'\n'+"\n" + '原文地址：\n' + articleUrl
-    else:
-        return content
+        content[0:200] + '...'+'\n'+"\n" + '原文地址：\n' + articleUrl 
+    return content+'\n\n' + time.time()
 
 
 def getINFO():
@@ -65,3 +65,7 @@ def send(SCKEYS,data):
     for SCKEY in SCKEYS:
         eachurl = ft_url + SCKEY + '.send'
         requests.post(eachurl, data, headers=ft_headers)
+        time.sleep(1)
+
+getINFO()
+
