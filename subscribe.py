@@ -63,7 +63,7 @@ def getINFO():
 
 def send(SCKEYS,text,desp):
     for SCKEY in SCKEYS:
-        eachurl = ft_url + SCKEY + '.send'
+        eachurl = ft_url + SCKEY[0:-1] + '.send'
         data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
         req = requests.post(eachurl, data, headers=ft_headers)
         print(req.status_code)
