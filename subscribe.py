@@ -13,7 +13,9 @@ headers = {
   'Cookie': 'JSESSIONID=44A66ED72B96AEE63A9EB9938187871F; clwz_blc_pst_JWCx2djw=4211753326.20480'
 }
 ft_url = 'https://sc.ftqq.com/'
-ft_headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'}
+ft_headers = {
+              'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
+}
 
 
 
@@ -33,7 +35,7 @@ def getDesp(id,baselink):
     content = ''
     for string in soup.strings:
         content = content + string
-    if len(content)>900:
+    if len(content)>500:
         content[0:200] + '...'+'\n'+"\n" + '原文地址：\n' + articleUrl 
     return content
 
@@ -43,7 +45,7 @@ def getINFO():
     file = open('./Titles.txt', 'r', encoding='UTF-8')
     lastlist = file.readline()
     file.close()
-    if lists is not lastlist:
+    if str(lists) !=  lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
         file.write(str(lists))
         file.close()
@@ -63,9 +65,10 @@ def getINFO():
 
 def send(SCKEYS,text,desp):
     for SCKEY in SCKEYS:
-        eachurl = ft_url + SCKEY + '.send'
+        eachurl = ft_url + SCKEY[0:-1] + '.send'
         data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
         req = requests.post(eachurl, data, headers=ft_headers)
+        print(eachurl)
         print(req.status_code)
         time.sleep(1)
 
