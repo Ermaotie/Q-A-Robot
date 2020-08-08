@@ -40,6 +40,7 @@ def classify_demo(image):
     urlretrieve(image,file_name)
     img = get_file_content(file_name)
     res = classifyClient.advancedGeneral(img, options)
+    os.remove(file_name)
     return info_format(res['result'][0])
 
 
