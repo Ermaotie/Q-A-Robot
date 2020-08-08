@@ -43,7 +43,7 @@ def getINFO():
     file = open('./Titles.txt', 'r', encoding='UTF-8')
     lastlist = file.readline()
     file.close()
-    if lists != lastlist:
+    if str(lists) != lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
         file.write(str(lists))
         file.close()
