@@ -1,7 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-import time
+import time, random
 
 
 url = "http://jw.scut.edu.cn/zhinan/cms/article/v2/findInformNotice.do"
@@ -37,7 +37,7 @@ def getDesp(id,baselink):
         content = content + string
     if len(content)>500:
         content[0:200] + '...'+'\n'+"\n" + '原文地址：\n' + articleUrl 
-    return content
+    return content+'\n\n' + time.time()
 
 
 def getINFO():
@@ -47,31 +47,35 @@ def getINFO():
     file.close()
     if str(lists) !=  lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
-        file.write(str(lists))
+        file.write(lists)
         file.close()
         id = lists[0]['id']
-        time = lists[0]['createTime'][5::]
+        time = lists[0]['createtime']
         title = lists[0]['title']
 
-        text = time + title
+        text = time +' ' + title
         desp = getDesp(id,baseLink)
-
+        data = {'text': text, 'desp':desp}
         sFile = open('./SCKEYS.txt','r',encoding='utf-8')
         SCKEYS = sFile.readlines()
         sFile.close()
 
-        send(SCKEYS,text,desp)
+        send(SCKEYS,data)
 
 
-def send(SCKEYS,text,desp):
+def send(SCKEYS,data):
     for SCKEY in SCKEYS:
+<<<<<<< HEAD
         eachurl = ft_url + SCKEY[0:-1] + '.send'
         data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
         req = requests.post(eachurl, data, headers=ft_headers)
         print(eachurl)
         print(req.status_code)
+=======
+        eachurl = ft_url + SCKEY + '.send'
+        requests.post(eachurl, data, headers=ft_headers)
+>>>>>>> parent of 336c22e... Update subscribe.py
         time.sleep(1)
-
 
 getINFO()
 
