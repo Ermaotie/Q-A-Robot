@@ -32,6 +32,11 @@ def sub(message):
         requests.get(api + key + '.send?text=' + '恭喜绑定成功，请等待推送')
         return '请查看消息列表'
 
+@robot.subscribe
+def subscribe():
+    message = '欢迎关注二茂铁Fe，如需订阅华工通知请发送\n订阅通知\n于本公众号。\n操作流程较长，若遇到问题请访问：\n https://1b.mk/2020/08/08/subscribe/'
+    return message
+
 
 robot.config['HOST'] = '0.0.0.0'
 robot.config['PORT'] = 80
