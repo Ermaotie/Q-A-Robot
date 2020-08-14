@@ -25,12 +25,16 @@ def subscribe():
 @robot.text
 def sub(message):
     if 'SCKEY' in message.content:
-        key = message.content.split()[-1]
-        file = open('./SCKEYS.txt', 'a', encoding='UTF-8')
-        file.write(key+'\n')
+        key = message.content.split()[-1] + '\n'
+        file = open('./SCKEYS.txt', 'r+', encoding='UTF-8')
+        keys = file.readlines()
+        if key in keys:
+            file.close()
+            return '你已经成功添加订阅了，无需重复添加~'
+        file.write(key)
         file.close()
-        requests.get(api + key + '.send?text=' + '恭喜绑定成功，请等待推送')
-        return '请查看消息列表'
+        requests.get(api + key + '.send?text=' + '恭喜订阅成功，请等待推送')
+        return '请查看消息列表,是否有示例消息发送；若无，则请登陆 https://sc.ftqq.com/ 检查是否已绑定Server酱'
 
 @robot.subscribe
 def subscribe():
