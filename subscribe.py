@@ -33,8 +33,7 @@ def getDesp(id,baselink):
     content = ''
     for string in soup.strings:
         content = content + string
-    if len(content)>900:
-        content = content[0:200] + '...'+'\n'+"\n" + '原文地址：\n' + articleUrl 
+    content = content +'\n'+"\n" + '原文地址：\n' + articleUrl
     return content
 
 
@@ -90,33 +89,29 @@ def pushAllINFO():
     SCKEYS = sFile.readlines()
     sFile.close()
 
-    file = open('./Titles.txt', 'w+', encoding='UTF-8')
-    lists = file.readline()
+    file = open('./Titles.txt', 'r', encoding='UTF-8')
+    lists = eval(file.readline())
     file.close()
-
-    nowTime = str(time.strftime('%Y %m.%d %H:%M:%S', time.localtime(time.time()))).split(' ')
-
+    nowTime = str(time.strftime('%Y.%m.%d %H:%M:%S', time.localtime(time.time()))).split(' ')
     desps = ""
     for item in lists:
-        if item['createTime'] == nowTime[1]:
-            desps =  '\n\n'+ item['title'] + '\n\n' +  getDesp(item['id'],baseLink)
+        if item['createTime'] == nowTime[0]:
+            desps = desps + '\n\n' + getDesp(item['id'], baseLink) + '\n\n\n'
     if desps == "":
         desps = '今天没有通知噢'
     for SCKEY in SCKEYS:
-        if SCKEY[0]==1:
+        if SCKEY[0]=='1':
             eachurl = ft_url + SCKEY[2:-1] + '.send'
-            print(eachurl)
-            data = {'text': nowTime + "每日教务处通知汇总", 'desp': desps}
+            data = {'text': nowTime[0] + "每日教务处通知汇总", 'desp': desps}
             req = requests.post(eachurl, data, headers=ft_headers)
-            print(req.status_code)
             time.sleep(0.5)
 
 
 
 
 def main():
-    pushINFO()
-    if '17:00:00'==str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))).split(' ')[-1]:
+    # pushINFO()
+    if '17:30'==str(time.strftime('%Y-%m-%d %H:%M %S',time.localtime(time.time()))).split(' ')[1]:
         pushAllINFO()
 
 
