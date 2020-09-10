@@ -38,11 +38,12 @@ def getDesp(id,baselink):
     return content
 
 
-def getINFO():
+def pushINFO():
     lists = getJsons()
     file = open('./Titles.txt', 'r', encoding='UTF-8')
     lastlist = file.readline()
     file.close()
+
     if str(lists) != lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
         file.write(str(lists))
@@ -61,14 +62,45 @@ def getINFO():
         send(SCKEYS,text,desp)
 
 
+
 def send(SCKEYS,text,desp):
     for SCKEY in SCKEYS:
-        eachurl = ft_url + SCKEY[0:-1] + '.send'
-        data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
-        req = requests.post(eachurl, data, headers=ft_headers)
-        print(req.status_code)
-        time.sleep(0.5)
+        if SCKEY[0]==0:
+            eachurl = ft_url + SCKEY[2:-1] + '.send'
+            data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
+            req = requests.post(eachurl, data, headers=ft_headers)
+            print(req.status_code)
+            time.sleep(0.5)
+
+def pushAllINFO():
+    sFile = open('./SCKEYS.txt', 'r', encoding='utf-8')
+    SCKEYS = sFile.readlines()
+    sFile.close()
+
+    file = open('./Titles.txt', 'w+', encoding='UTF-8')
+    lists = file.readline()
+    file.close()
+
+    nowTime = str(time.strftime('%Y %m.%d %H:%M:%S', time.localtime(time.time()))).split(' ')
+
+    desps = ""
+    for item in lists:
+        if item['createTime'] == nowTime[1]:
+            desps =  '\n\n'+ item['title'] + '\n\n' +  getDesp(item['id'],baseLink)
+
+    for SCKEY in SCKEYS:
+        if SCKEY[0]==1:
+            eachurl = ft_url + SCKEY[2:-1] + '.send'
+            data = {'text': nowTime + "每日教务处通知汇总", 'desp': desps}
+            req = requests.post(eachurl, data, headers=ft_headers)
+            print(req.status_code)
+            time.sleep(0.5)
 
 
-getINFO()
+def main():
+    if '17:00:00'==str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))).split(' ')[-1]:
+        pushAllINFO()
+    pushINFO()
+
+main()
 
