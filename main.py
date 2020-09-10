@@ -31,7 +31,7 @@ def sub(message):
         keys = file.readlines()
         if key in keys:
             file.close()
-            requests.get(api + key + '.send?text=' + '恭喜订阅成功，请等待推送')
+            requests.get(api + msg[-1] + '.send?text=' + '恭喜订阅成功，请等待推送')
             return '你已经成功添加订阅了，无需重复添加~查看消息列表以检查，若无消息，请尝试重新绑定'
         if msg[1]==1 or msg[1] == '按日推送':
             file.write('1 '+ key)
