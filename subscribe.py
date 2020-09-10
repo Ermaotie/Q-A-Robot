@@ -43,7 +43,7 @@ def pushINFO():
     file = open('./Titles.txt', 'r', encoding='UTF-8')
     lastlist = file.readline()
     file.close()
-
+    print('1')
     if str(lists) != lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
         file.write(str(lists))
@@ -58,15 +58,17 @@ def pushINFO():
         sFile = open('./SCKEYS.txt','r',encoding='utf-8')
         SCKEYS = sFile.readlines()
         sFile.close()
-
+        print('2')
         send(SCKEYS,text,desp)
 
 
 
 def send(SCKEYS,text,desp):
+    print('3')
     for SCKEY in SCKEYS:
         if SCKEY[0]==0:
             eachurl = ft_url + SCKEY[2:-1] + '.send'
+            print(eachurl)
             data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
             req = requests.post(eachurl, data, headers=ft_headers)
             print(req.status_code)
