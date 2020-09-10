@@ -30,7 +30,7 @@ def sub(message):
         file = open('./SCKEYS.txt', 'r+', encoding='UTF-8')
         keys = file.readlines()
         print(msg)
-        if '1 '+msg[-1] in keys or '0 '+ msg[-1] in keys:
+        if '1 '+key in keys or '0 '+ key in keys:
             file.close()
             requests.get(api + msg[-1] + '.send?text=' + '已订阅成功，请等待推送')
             return '你已经成功添加订阅了，无需重复添加~查看消息列表以检查，若无消息，请尝试重新绑定'
