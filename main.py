@@ -40,6 +40,7 @@ def sub(message):
             key = '0 '+key
         file.write(key)
         file.close()
+        requests.get(api + msg[-1] + '.send?text=' + '恭喜订阅成功，请等待推送')
         return '请查看消息列表,是否有示例消息发送；若无，则请登陆 https://sc.ftqq.com/ 检查是否已绑定Server酱'
 
 @robot.subscribe
