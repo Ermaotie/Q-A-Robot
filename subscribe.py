@@ -87,20 +87,25 @@ def pushAllINFO():
     for item in lists:
         if item['createTime'] == nowTime[1]:
             desps =  '\n\n'+ item['title'] + '\n\n' +  getDesp(item['id'],baseLink)
-
+    if desps == "":
+        desps = '今天没有通知噢'
     for SCKEY in SCKEYS:
         if SCKEY[0]==1:
             eachurl = ft_url + SCKEY[2:-1] + '.send'
+            print(eachurl)
             data = {'text': nowTime + "每日教务处通知汇总", 'desp': desps}
             req = requests.post(eachurl, data, headers=ft_headers)
             print(req.status_code)
             time.sleep(0.5)
 
 
+
+
 def main():
+    pushINFO()
     if '17:00:00'==str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))).split(' ')[-1]:
         pushAllINFO()
-    pushINFO()
+
 
 main()
 
