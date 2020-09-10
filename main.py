@@ -19,7 +19,7 @@ def img(message):
 
 @robot.filter('订阅通知')
 def subscribe():
-    return '在微信绑定Server酱之后，请将SCKEY发送至本公众号\n格式为：\nSCKEY xxxxxx\n如果您不知道什么是SCKEY，请返回教程继续阅读'+'https://1b.mk/2020/08/08/subscribe/'
+    return '在微信绑定Server酱之后，请将SCKEY发送至本公众号。\n目前共有两种模式：\n1.实时推送\n格式为：\nSCKEY xxxxxx\n2.每日推送\n格式为：\nSCKEY 1 xxxxxxx\n如果您还未绑定或不知道什么是SCKEY，请返回教程继续阅读'+'https://1b.mk/2020/08/08/subscribe/'
 
 
 @robot.text
