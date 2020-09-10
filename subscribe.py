@@ -66,7 +66,8 @@ def pushINFO():
 def send(SCKEYS,text,desp):
     print('3')
     for SCKEY in SCKEYS:
-        if SCKEY[0]==0:
+        print(SCKEY)
+        if SCKEY[0]=='0':
             eachurl = ft_url + SCKEY[2:-1] + '.send'
             print(eachurl)
             data = {'text': text, 'desp': desp+'\n\n'+ str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))}
