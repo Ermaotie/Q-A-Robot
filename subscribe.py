@@ -72,6 +72,16 @@ def send(SCKEYS,text,desp):
             print(req.status_code)
             time.sleep(0.5)
 
+def demoSend(SCKEY,desp):
+    SCKEY ='SCU97223Tb71ed152160cd8b2841a256675dc8ba35eb6d3db532c1'
+    demoID = getJsons()[0]['id']
+    desp = getDesp(demoID,baseLink)
+    data = {'text': 'demoText', 'desp': desp}
+    demoUrl = ft_url + SCKEY + '.send'
+    req = requests.post(demoUrl, data, headers=ft_headers)
+    print(req.status_code)
+
+
 def pushAllINFO():
     sFile = open('./SCKEYS.txt', 'r', encoding='utf-8')
     SCKEYS = sFile.readlines()
