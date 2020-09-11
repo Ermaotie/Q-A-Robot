@@ -99,7 +99,7 @@ def pushAllINFO():
     for SCKEY in SCKEYS:
         if SCKEY[0]=='1':
             eachurl = ft_url + SCKEY[2:] + '.send'
-            data = {'text': nowTime[0] + "每日教务处通知汇总", 'desp': '1'+desps}
+            data = {'text': nowTime[0] + "每日教务处通知汇总", 'desp': desps}
             requests.post(eachurl, data, headers=ft_headers)
             time.sleep(0.5)
 
