@@ -107,7 +107,7 @@ def pushAllINFO():
 
 
 def main():
-    if '22:39'==str(time.strftime('%Y-%m-%d %H:%M %S',time.localtime(time.time()))).split(' ')[1]:
+    if '17:00'==str(time.strftime('%Y-%m-%d %H:%M %S',time.localtime(time.time()))).split(' ')[1]:
         pushAllINFO()
     pushINFO()
 
