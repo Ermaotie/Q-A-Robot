@@ -42,7 +42,6 @@ def pushINFO():
     file = open('./Titles.txt', 'r', encoding='UTF-8')
     lastlist = file.readline()
     file.close()
-    print('1')
     if str(lists) != lastlist:
         file = open('./Titles.txt', 'w+', encoding='UTF-8')
         file.write(str(lists))
@@ -57,13 +56,11 @@ def pushINFO():
         sFile = open('./SCKEYS.txt','r',encoding='utf-8')
         SCKEYS = sFile.readlines()
         sFile.close()
-        print('2')
         send(SCKEYS,text,desp)
 
 
 
 def send(SCKEYS,text,desp):
-    print('3')
     for SCKEY in SCKEYS:
         print(SCKEY)
         if SCKEY[0]=='0':
@@ -101,19 +98,18 @@ def pushAllINFO():
         desps = '今天没有通知噢'
     for SCKEY in SCKEYS:
         if SCKEY[0]=='1':
-            eachurl = ft_url + SCKEY[2:-1] + '.send'
-            data = {'text': nowTime[0] + "每日教务处通知汇总", 'desp': desps}
-            req = requests.post(eachurl, data, headers=ft_headers)
+            eachurl = ft_url + SCKEY[2:] + '.send'
+            data = {'text': nowTime[0] + "每日教务处通知汇总", 'desp': '1'+desps}
+            requests.post(eachurl, data, headers=ft_headers)
             time.sleep(0.5)
 
 
 
 
 def main():
-    pushINFO()
-    if '17:30'==str(time.strftime('%Y-%m-%d %H:%M %S',time.localtime(time.time()))).split(' ')[1]:
+    if '22:39'==str(time.strftime('%Y-%m-%d %H:%M %S',time.localtime(time.time()))).split(' ')[1]:
         pushAllINFO()
-
+    pushINFO()
 
 main()
 
