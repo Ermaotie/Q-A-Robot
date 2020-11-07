@@ -1,4 +1,0 @@
-bs4
-werobot
-requests
-urllib
