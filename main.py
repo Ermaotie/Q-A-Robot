@@ -14,7 +14,7 @@ def sub(message):
 
 @robot.subscribe
 def subscribe():
-    message = '欢迎关注二茂铁Fe，如需订阅华工通知请发送\n订阅通知\n于本公众号。\n操作流程较长，若遇到问题请访问：\n https://1b.mk/2020/08/08/subscribe/'
+    message = '如果想要订阅华工通知的话请发送“订阅通知”至此公众号，并关注其中的测试号。\n若有其他合理的需求或建议，欢迎发送邮件至ermaotie@163.com进一步讨论。\n（更换测试号的原因以及带来的局限性：\n1. 测试号订阅通知仅需关注，无需之前繁琐操作。 \n2.测试号无需认证就开通了全部接口权限。\n局限：\n测试号订阅人数有限。）'
     return message
 
 
