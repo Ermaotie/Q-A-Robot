@@ -7,9 +7,13 @@ robot.config["APP_ID"] = "wx7407f5c28abc23c0"
 robot.config["APP_SECRET"] = "0b0e1bf34d4253ff1e550830da0818f8"
 
 
+@robot.image
+def img(message):
+    return classify_demo(message.img)
+
 @robot.text
 def sub(message):
-    return message.content
+    return message.content+？
 
 
 @robot.subscribe
