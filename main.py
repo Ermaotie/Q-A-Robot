@@ -1,5 +1,6 @@
 #coding=utf-8
 import werobot
+from function import *
 
 
 robot = werobot.WeRoBot(token='tokenhere')
@@ -13,12 +14,12 @@ def img(message):
 
 @robot.text
 def sub(message):
-    return message.content+？
+    return message.content+"?"
 
 
 @robot.subscribe
 def subscribe():
-    message = '如果想要订阅华工通知的话请发送“订阅通知”至此公众号，并关注其中的测试号。\n若有其他合理的需求或建议，欢迎发送邮件至ermaotie@163.com进一步讨论。\n（更换测试号的原因以及带来的局限性：\n1. 测试号订阅通知仅需关注，无需之前繁琐操作。 \n2.测试号无需认证就开通了全部接口权限。\n局限：\n测试号订阅人数有限。）'
+    message = '关注该测试号，即可订阅华工通知。\n若有其他合理的需求或建议，欢迎发送邮件至ermaotie@163.com进一步讨论。\n（更换测试号的原因以及带来的局限性：\n1. 测试号订阅通知仅需关注，无需之前繁琐操作。 \n2.测试号无需认证就开通了全部接口权限。\n局限：\n测试号订阅人数有限。）'
     return message
 
 
